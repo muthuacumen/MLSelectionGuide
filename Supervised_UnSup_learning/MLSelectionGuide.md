@@ -305,6 +305,7 @@
 11. [The 60-Second Decision Shortcut](#-the-60-second-decision-shortcut)
 12. [Industry Use Cases — What Algorithm for What Domain?](#-industry-use-cases--what-algorithm-for-what-domain)
 13. [Example Scenarios — "What Would YOU Choose?"](#-example-scenarios--what-would-you-choose)
+14. [Notebook Cross-Reference Index](#-notebook-cross-reference-index)
 
 ---
 
@@ -720,6 +721,12 @@ when NOT to use it, and key hyperparameters to tune.
 
 #### 1. Linear Regression (OLS — Ordinary Least Squares)
 
+> 📓 **Hands-on Notebooks:**
+> - `../LinearRegressionArchitectureW1/linear_regression_training.ipynb` — Full training walkthrough
+> - `../ProjectTest/notebooks/linear_regression.ipynb` — Univariate Linear Regression (scratch vs scikit-learn)
+> - `../Lab1_StreamingDataforPMwithLinRegAlerts/notebook/PredictiveMaintenance_LinReg.ipynb` — Predictive maintenance alerts using Linear Regression
+> - `../Lecture/Diabetes_Progression_ML_Lecture.ipynb` — Multivariate Linear Regression on diabetes data
+
 **What it does:** Finds the best straight line (or flat plane in multiple dimensions)
 that minimizes the sum of squared errors between predictions and actual values.
 
@@ -746,6 +753,10 @@ that minimizes the sum of squared errors between predictions and actual values.
 ---
 
 #### 2. Polynomial Regression
+
+> 📓 **Hands-on Notebooks:**
+> - `../Lecture/Diabetes_Progression_ML_Lecture.ipynb` — Polynomial Regression on diabetes progression data
+> - `../Practical_Lab2_CSCN8010/Practical_Lab2_CSCN8010_Muthuraj_Jayakumar.ipynb` — Polynomial Regression with cross-validation
 
 **What it does:** Extends Linear Regression by adding squared, cubed (etc.) versions of
 features so the model can fit curves instead of straight lines.
@@ -845,6 +856,10 @@ AND the stability of Ridge when features are correlated.
 ---
 
 #### 6. Decision Tree Regressor
+
+> 📓 **Hands-on Notebooks:**
+> - `../DecisionTreeRegression_Workshop/DecisionTreeRegression_Workshop.ipynb` — Decision Tree Workshop (Regression on California Housing + Classification on Iris)
+> - `../Regression/DecisionTreeRegressionTP.ipynb` — Decision Tree Regression on noisy sine wave with cross-validation
 
 **What it does:** Splits data into groups using if/else rules, then predicts the average
 value in each final group (leaf). Creates a tree of binary decisions.
@@ -977,6 +992,10 @@ model — these are the support vectors.
 
 #### 10. KNN Regressor (K-Nearest Neighbors)
 
+> 📓 **Hands-on Notebooks:**
+> - `../KNearestNeighbors_Workshop/KNearestNeighbors_Workshop.ipynb` — KNN Active Learning Workshop (Iris + Weather API data)
+> - `../KNearestNeighbors_Workshop/KNN_Workshop_Solution.ipynb` — KNN Workshop solution with peer reflections
+
 **What it does:** To predict a new point, finds the K closest points in the training data
 and averages their values. No training phase — all work happens at prediction time.
 
@@ -1034,6 +1053,13 @@ hard-to-predict points get more attention in later rounds.
 
 #### 12. Neural Network — MLP Regressor (Multi-Layer Perceptron)
 
+> 📓 **Hands-on Notebooks:**
+> - `../MultiLayerPerceptrons_Workshop/MultiLayerPerceptrons_Workshop.ipynb` — Foundations of Neural Networks & MLPs (from biological neurons to multi-layer architectures)
+> - `../MultiLayerPerceptrons_Workshop/MultiLayeredPerceptrons.ipynb` — MLP implementation with PyTorch
+> - `../SingleLayerPerceptrons_Workshop/BPusingGD.ipynb` — Back Propagation using Gradient Descent (step-by-step)
+> - `../SingleLayerPerceptrons_Workshop/SingleLayerPerceptrons_Workshop.ipynb` — From biological to artificial neurons
+> - `../SingleLayerPerceptrons_Workshop/Wonderland_ANN_Case_Study.ipynb` — ANN case study with PyTorch (Canada's Wonderland prediction)
+
 **What it does:** Layers of interconnected "neurons" that learn complex non-linear
 mappings from inputs to outputs through backpropagation. Universal function approximators.
 
@@ -1070,6 +1096,11 @@ mappings from inputs to outputs through backpropagation. Universal function appr
 
 #### 13. Logistic Regression
 
+> 📓 **Hands-on Notebooks:**
+> - `../LogisticRegressionClassifier_Workshop/LogisticRegressionClassifier_Workshop.ipynb` — Statistical Classification and Logistic Regression (theory + code)
+> - `../LogisticRegressionClassifier_Workshop/BankLoanRepayment_LogisticRegression.ipynb` — Logistic Regression for bank loan default prediction
+> - `../Group3_LogisticRegression_NetworkIntrusion/LogisticRegressionClassifier_Workshop_Intrusion.ipynb` — Logistic Regression for network intrusion detection (binary classification)
+
 **What it does:** Despite the name, this is a CLASSIFICATION algorithm. It fits a linear
 boundary and outputs probabilities (0% to 100%) using the sigmoid function.
 
@@ -1100,6 +1131,10 @@ boundary and outputs probabilities (0% to 100%) using the sigmoid function.
 ---
 
 #### 14. Naive Bayes (Gaussian / Multinomial / Bernoulli)
+
+> 📓 **Hands-on Notebooks:**
+> - `../Lab2/Muthuraj_Jayakumar_LAB2.ipynb` — Gaussian & Multinomial Naive Bayes on spam/ham email dataset
+> - `../NLP_PipelineIntroductionWorkshop/NLP-Pipeline-Introduction_Solved.ipynb` — NLP Pipeline with Naive Bayes text classification + BERT QA
 
 **What it does:** Applies Bayes' theorem with a "naive" assumption that all features are
 independent of each other. Despite this often-wrong assumption, it works remarkably well
@@ -1136,6 +1171,10 @@ in practice, especially for text.
 ---
 
 #### 15. K-Nearest Neighbors Classifier
+
+> 📓 **Hands-on Notebooks:**
+> - `../KNearestNeighbors_Workshop/KNearestNeighbors_Workshop.ipynb` — KNN Active Learning Workshop (Iris + Weather API, GridSearchCV tuning)
+> - `../KNearestNeighbors_Workshop/KNN_Workshop_Solution.ipynb` — KNN Workshop solution with reflections
 
 **What it does:** Classifies a new point by looking at its K nearest neighbors in the
 training data and taking a majority vote. "You are the average of the 5 people closest to you."
@@ -1199,6 +1238,10 @@ create non-linear boundaries by projecting data into higher dimensions.
 ---
 
 #### 17. Decision Tree Classifier
+
+> 📓 **Hands-on Notebooks:**
+> - `../DecisionTreeRegression_Workshop/DecisionTreeRegression_Workshop.ipynb` — Decision Tree Workshop (includes Classification on Iris with Gini impurity analysis)
+> - `../DecisionTreeRegression_Workshop/DecisionTreeRegression_Workshop_New.ipynb` — Updated Decision Tree Workshop
 
 **What it does:** Builds a tree of yes/no questions that splits the data until each leaf
 is (mostly) one class. The tree can be printed and followed by a human.
@@ -1327,6 +1370,12 @@ to misclassified samples in each round. Final prediction is a weighted vote of a
 ---
 
 #### 21. Neural Network — MLP Classifier (Multi-Layer Perceptron)
+
+> 📓 **Hands-on Notebooks:**
+> - `../MultiLayerPerceptrons_Workshop/MultiLayerPerceptrons_Workshop.ipynb` — Foundations of Neural Networks & MLPs
+> - `../MultiLayerPerceptrons_Workshop/MultiLayeredPerceptrons.ipynb` — MLP implementation with PyTorch
+> - `../SingleLayerPerceptrons_Workshop/BPusingGD.ipynb` — Back Propagation using Gradient Descent (complete beginner's guide)
+> - `../SingleLayerPerceptrons_Workshop/Wonderland_ANN_Case_Study.ipynb` — ANN classification case study with PyTorch
 
 **What it does:** Fully connected layers of neurons that learn complex decision boundaries
 through backpropagation. Can approximate any classification function given enough data.
@@ -1621,6 +1670,9 @@ START: You have UNLABELED data (no target variable y)
 
 #### 22. K-Means Clustering
 
+> 📓 **Hands-on Notebook:**
+> - `../DataTransformationDemos/clustering_concepts_similarity_demo.ipynb` — K-Means with silhouette-based k selection, distance measures (Euclidean, Manhattan, Cosine), and feature scaling effects
+
 **What it does:** Partitions data into exactly K clusters by iteratively assigning each point
 to the nearest cluster center (centroid), then recalculating centroids until convergence.
 
@@ -1712,6 +1764,9 @@ hierarchy of clusters and extracts the most stable ones automatically.
 ---
 
 #### 25. Agglomerative (Hierarchical) Clustering
+
+> 📓 **Hands-on Notebook:**
+> - `../DataTransformationDemos/clustering_concepts_similarity_demo.ipynb` — Hierarchical Clustering with dendrograms and linkage methods
 
 **What it does:** Starts with each point as its own cluster, then repeatedly merges the two
 closest clusters until everything is one big cluster. The result is a tree (dendrogram) that
@@ -1829,6 +1884,9 @@ rather than distance.
 ---
 
 #### 29. PCA (Principal Component Analysis)
+
+> 📓 **Hands-on Notebook:**
+> - `../MinMaxNormalizationWorkshop/MinMax_Normalization_WorkshopSolution.ipynb` — PCA analysis with explained variance, feature loadings, and PC-to-Price correlation on housing data
 
 **What it does:** Finds new axes (principal components) that capture the maximum variance
 in the data. Projects data onto these axes, keeping only the top components that explain
@@ -2200,11 +2258,15 @@ tree structure (FP-tree) instead of candidate generation. Significantly faster f
 > "salary" ranges 20,000–200,000, salary will dominate all distances.
 > **Always** use `StandardScaler` or `MinMaxScaler` before these models.
 > Tree-based models (Decision Tree, Random Forest, Gradient Boosting) do NOT need scaling.
+>
+> 📓 **See:** `../DataTransformationDemos/min_max_normalization_demo.ipynb` and `../DataTransformationDemos/zscore_normalization_demo.ipynb`
 
 ### 3. Using Accuracy on Imbalanced Data
 > If 99% of transactions are legitimate, a model that ALWAYS predicts "legitimate" gets
 > 99% accuracy — and catches zero fraud. Use **F1-score**, **Precision-Recall AUC**,
 > or **ROC-AUC** instead. Apply `class_weight='balanced'` or SMOTE for imbalanced classes.
+>
+> 📓 **See:** `../PerformanceMetricsClassification/PerformanceMetricsClassification.ipynb` — Comprehensive guide to classification evaluation metrics
 
 ### 4. Not Splitting Data Properly
 > **Always** split into Train / Validation / Test BEFORE any preprocessing.
@@ -2239,6 +2301,8 @@ tree structure (FP-tree) instead of candidate generation. Significantly faster f
 > and "income" is 20,000–200,000, income dominates all distances and the clusters will
 > essentially ignore age. **Always** use `StandardScaler` before distance-based clustering.
 > Tree-based methods and association rules do NOT need scaling.
+>
+> 📓 **See:** `../DataTransformationDemos/clustering_concepts_similarity_demo.ipynb` — Demonstrates feature scaling effects on clustering results
 
 ### 10. Interpreting t-SNE Distances as Meaningful
 > In a t-SNE plot, the distance BETWEEN clusters is meaningless — only the grouping within
@@ -2472,6 +2536,84 @@ Test your understanding with these scenarios. Try to pick the algorithm BEFORE r
 | 13 | A delivery company has GPS coordinates of 100K deliveries and wants to find geographic hotspots. | **DBSCAN** — density-based, finds clusters of any shape, ignores sparse rural deliveries as noise. |
 | 14 | An HR department has 5,000 employee records and wants to predict salary from role, experience, education, and department. | **Random Forest Regressor** — mixed features, medium data, probably non-linear interactions. |
 | 15 | A biologist has single-cell data: 500K cells × 20,000 genes. Wants to visualize cell-type clusters in 2D. | **UMAP** — t-SNE is too slow for 500K points. UMAP preserves global structure and runs fast. |
+
+---
+
+## 📓 Notebook Cross-Reference Index
+
+Quick-lookup table mapping each algorithm (and key preprocessing topic) to hands-on notebooks in `D:\Projects\`.
+All paths are relative to the `Supervised_UnSup_learning` folder.
+
+### Supervised Learning — Regression
+
+| # | Algorithm | Notebook(s) |
+|---|-----------|-------------|
+| 1 | Linear Regression | `../LinearRegressionArchitectureW1/linear_regression_training.ipynb` · `../ProjectTest/notebooks/linear_regression.ipynb` · `../Lab1_StreamingDataforPMwithLinRegAlerts/notebook/PredictiveMaintenance_LinReg.ipynb` · `../Lecture/Diabetes_Progression_ML_Lecture.ipynb` |
+| 2 | Polynomial Regression | `../Lecture/Diabetes_Progression_ML_Lecture.ipynb` · `../Practical_Lab2_CSCN8010/Practical_Lab2_CSCN8010_Muthuraj_Jayakumar.ipynb` |
+| 3 | Ridge Regression | *(no dedicated notebook yet)* |
+| 4 | Lasso Regression | *(no dedicated notebook yet)* |
+| 5 | Elastic Net | *(no dedicated notebook yet)* |
+| 6 | Decision Tree Regressor | `../DecisionTreeRegression_Workshop/DecisionTreeRegression_Workshop.ipynb` · `../Regression/DecisionTreeRegressionTP.ipynb` |
+| 7 | Random Forest Regressor | *(no dedicated notebook yet)* |
+| 8 | Gradient Boosting | *(no dedicated notebook yet)* |
+| 9 | SVR | *(no dedicated notebook yet)* |
+| 10 | KNN Regressor | `../KNearestNeighbors_Workshop/KNearestNeighbors_Workshop.ipynb` · `../KNearestNeighbors_Workshop/KNN_Workshop_Solution.ipynb` |
+| 11 | AdaBoost Regressor | *(no dedicated notebook yet)* |
+| 12 | Neural Network (MLP) | `../MultiLayerPerceptrons_Workshop/MultiLayerPerceptrons_Workshop.ipynb` · `../MultiLayerPerceptrons_Workshop/MultiLayeredPerceptrons.ipynb` · `../SingleLayerPerceptrons_Workshop/BPusingGD.ipynb` · `../SingleLayerPerceptrons_Workshop/SingleLayerPerceptrons_Workshop.ipynb` · `../SingleLayerPerceptrons_Workshop/Wonderland_ANN_Case_Study.ipynb` |
+
+### Supervised Learning — Classification
+
+| # | Algorithm | Notebook(s) |
+|---|-----------|-------------|
+| 13 | Logistic Regression | `../LogisticRegressionClassifier_Workshop/LogisticRegressionClassifier_Workshop.ipynb` · `../LogisticRegressionClassifier_Workshop/BankLoanRepayment_LogisticRegression.ipynb` · `../Group3_LogisticRegression_NetworkIntrusion/LogisticRegressionClassifier_Workshop_Intrusion.ipynb` |
+| 14 | Naive Bayes | `../Lab2/Muthuraj_Jayakumar_LAB2.ipynb` · `../NLP_PipelineIntroductionWorkshop/NLP-Pipeline-Introduction_Solved.ipynb` |
+| 15 | KNN Classifier | `../KNearestNeighbors_Workshop/KNearestNeighbors_Workshop.ipynb` · `../KNearestNeighbors_Workshop/KNN_Workshop_Solution.ipynb` |
+| 16 | SVM Classifier | *(no dedicated notebook yet)* |
+| 17 | Decision Tree Classifier | `../DecisionTreeRegression_Workshop/DecisionTreeRegression_Workshop.ipynb` · `../DecisionTreeRegression_Workshop/DecisionTreeRegression_Workshop_New.ipynb` |
+| 18 | Random Forest Classifier | *(no dedicated notebook yet)* |
+| 19 | Gradient Boosting Classifier | *(no dedicated notebook yet)* |
+| 20 | AdaBoost Classifier | *(no dedicated notebook yet)* |
+| 21 | Neural Network (MLP) | `../MultiLayerPerceptrons_Workshop/MultiLayerPerceptrons_Workshop.ipynb` · `../MultiLayerPerceptrons_Workshop/MultiLayeredPerceptrons.ipynb` · `../SingleLayerPerceptrons_Workshop/BPusingGD.ipynb` · `../SingleLayerPerceptrons_Workshop/Wonderland_ANN_Case_Study.ipynb` |
+
+### Unsupervised Learning
+
+| # | Algorithm | Notebook(s) |
+|---|-----------|-------------|
+| 22 | K-Means Clustering | `../DataTransformationDemos/clustering_concepts_similarity_demo.ipynb` |
+| 23 | DBSCAN | *(no dedicated notebook yet)* |
+| 24 | HDBSCAN | *(no dedicated notebook yet)* |
+| 25 | Agglomerative Clustering | `../DataTransformationDemos/clustering_concepts_similarity_demo.ipynb` |
+| 26 | GMM | *(no dedicated notebook yet)* |
+| 27 | Spectral Clustering | *(no dedicated notebook yet)* |
+| 29 | PCA | `../MinMaxNormalizationWorkshop/MinMax_Normalization_WorkshopSolution.ipynb` |
+| 30 | t-SNE | *(no dedicated notebook yet)* |
+| 31 | UMAP | *(no dedicated notebook yet)* |
+| 32 | Truncated SVD / NMF | *(no dedicated notebook yet)* |
+| 34 | Isolation Forest | *(no dedicated notebook yet)* |
+| 38 | Apriori / FP-Growth | *(no dedicated notebook yet)* |
+
+### Preprocessing & Evaluation
+
+| Topic | Notebook(s) |
+|-------|-------------|
+| Min-Max Normalization | `../DataTransformationDemos/min_max_normalization_demo.ipynb` · `../MinMaxNormalizationWorkshop/MinMax_Normalization_Workshop.ipynb` · `../MinMaxNormalizationWorkshop/MinMax_Normalization_WorkshopSolution.ipynb` |
+| Z-Score / StandardScaler | `../DataTransformationDemos/zscore_normalization_demo.ipynb` |
+| Encoding Categorical Features | `../DataTransformationDemos/encoding_categorical_features_demo.ipynb` |
+| Discretization / Binning | `../DataTransformationDemos/discretization_demo.ipynb` |
+| Box-Cox / Yeo-Johnson Transforms | `../DataTransformationDemos/boxcox_distribution_fitting_demo.ipynb` |
+| Concept Hierarchies (Roll-up/Drill-down) | `../DataTransformationDemos/concept_hierarchies_demo.ipynb` |
+| Data Reduction (Aggregation) | `../DataTransformationDemos/data_reduction_aggregation_demo.ipynb` |
+| Data Reduction (Sampling) | `../DataTransformationDemos/data_reduction_sampling_demo.ipynb` |
+| Classification Metrics (F1, AUC, Confusion Matrix) | `../PerformanceMetricsClassification/PerformanceMetricsClassification.ipynb` |
+| NLP Pipeline (Tokenization, TF-IDF) | `../NLP_PipelineIntroductionWorkshop/NLP-Pipeline-Introduction.ipynb` · `../NLP_PipelineIntroductionWorkshop/NLP-Pipeline-Introduction_Solved.ipynb` |
+| EDA / Data Cleaning | `../EDATester/Healthcare_Data_Cleaning.ipynb` · `../MLProgrammingPrep/Part1_Understanding_and_Cleaning.ipynb` |
+| Data Transformation & Modeling | `../MLProgrammingPrep/Part2_Transforming_and_Modeling.ipynb` |
+| Data Streaming & Visualization | `../DataStreamVisualization_Workshop/DataStreamVisualization_workshop.ipynb` |
+| Hypothesis Testing | `../PROG8431 Problem Analysis Workshop 2/Workshop2_HypothesisTesting.ipynb` |
+| Statistical Distributions (Z-Scores, T-Scores) | `../DataAnalysisMath_ProbAnalysisWS1/step_count_analysis.ipynb` |
+| Central Tendency & Compensation Analysis | `../CentralTendancyMeasures/ai_job_analysis.ipynb` |
+
+> **Note:** Entries marked *(no dedicated notebook yet)* are algorithms for which no hands-on notebook currently exists in `D:\Projects\`. These are good candidates for future workshop development.
 
 ---
 
