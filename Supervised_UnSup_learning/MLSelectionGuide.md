@@ -8,6 +8,277 @@
 
 ---
 
+## 🌳 Master ML Algorithm Selection Tree
+
+> **Start here.** This single decision tree covers ALL 39 algorithms in this guide.
+> Follow the questions from top to bottom — each ✅ is a recommended algorithm with a one-line example.
+> Once you find your match, jump to the detailed deep-dive card for that algorithm.
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║  Q1: Do you have LABELED data (a known target to predict)?  ║
+╚══════════════════════════════════════════════════════════════╝
+│
+├── YES → SUPERVISED LEARNING
+│   │
+│   ├── Q2: Is the target a CONTINUOUS NUMBER?
+│   │   │   (price, temperature, score, salary, quantity)
+│   │   │
+│   │   └── YES → ══ REGRESSION ══
+│   │       │
+│   │       ├── Q3: Is the relationship roughly LINEAR (straight line)?
+│   │       │   │
+│   │       │   ├── YES
+│   │       │   │   │
+│   │       │   │   ├── Q4: Are features correlated with each other?
+│   │       │   │   │   │
+│   │       │   │   │   ├── NO
+│   │       │   │   │   │   ├── Simple baseline needed?
+│   │       │   │   │   │   │   ✅ LINEAR REGRESSION
+│   │       │   │   │   │   │   📌 Predict salary from years of experience
+│   │       │   │   │   │   │
+│   │       │   │   │   │   └── Want safety against overfitting?
+│   │       │   │   │   │       ✅ RIDGE REGRESSION (L2)
+│   │       │   │   │   │       📌 Crop yield from 10 weather variables
+│   │       │   │   │   │
+│   │       │   │   │   └── YES (multicollinearity present)
+│   │       │   │   │       │
+│   │       │   │   │       ├── Want auto feature selection (drop irrelevant)?
+│   │       │   │   │       │   ✅ LASSO REGRESSION (L1)
+│   │       │   │   │       │   📌 12 of 200 blood tests actually matter
+│   │       │   │   │       │
+│   │       │   │   │       ├── Correlated feature GROUPS + selection?
+│   │       │   │   │       │   ✅ ELASTIC NET (L1 + L2)
+│   │       │   │   │       │   📌 Genomics — genes activate in correlated clusters
+│   │       │   │   │       │
+│   │       │   │   │       └── Keep all features, just shrink noisy ones?
+│   │       │   │   │           ✅ RIDGE REGRESSION (L2)
+│   │       │   │   │           📌 Housing price from neighborhood stats
+│   │       │   │   │
+│   │       │   │   └── Is the relationship CURVED?
+│   │       │   │       ✅ POLYNOMIAL REGRESSION
+│   │       │   │       📌 MPG peaks at medium HP, drops at high HP
+│   │       │   │
+│   │       │   └── NO / NOT SURE
+│   │       │       │
+│   │       │       ├── Q5: Must you EXPLAIN decisions to non-technical people?
+│   │       │       │   │
+│   │       │       │   ├── YES
+│   │       │       │   │   ✅ DECISION TREE REGRESSOR
+│   │       │       │   │   📌 "Credit score = 680 because income > $50k AND debt < 30%"
+│   │       │       │   │
+│   │       │       │   └── NO (accuracy matters more)
+│   │       │       │       │
+│   │       │       │       └── Q6: How large is your dataset?
+│   │       │       │           │
+│   │       │       │           ├── Tiny (< 500 rows, many features)
+│   │       │       │           │   ✅ RIDGE or ELASTIC NET
+│   │       │       │           │   📌 100 patients, 500 gene features — regularize!
+│   │       │       │           │
+│   │       │       │           ├── Small (< 10K rows)
+│   │       │       │           │   ├── Complex patterns? → ✅ SVR (Support Vector)
+│   │       │       │           │   │   📌 Chemical reaction yield from temp + pressure
+│   │       │       │           │   └── Quick baseline? → ✅ KNN REGRESSOR
+│   │       │       │           │       📌 Used car: average 5 most similar sales
+│   │       │       │           │
+│   │       │       │           ├── Medium (10K–50K rows)
+│   │       │       │           │   ├── Minimal tuning? → ✅ RANDOM FOREST
+│   │       │       │           │   │   📌 Airbnb prices — robust out of the box
+│   │       │       │           │   └── Max accuracy? → ✅ GRADIENT BOOSTING
+│   │       │       │           │       📌 Insurance claims — wins Kaggle
+│   │       │       │           │
+│   │       │       │           ├── Large (50K–1M rows)
+│   │       │       │           │   ✅ GRADIENT BOOSTING (XGBoost / LightGBM / CatBoost)
+│   │       │       │           │   📌 Energy consumption prediction from sensor arrays
+│   │       │       │           │
+│   │       │       │           └── Massive (millions+)
+│   │       │       │               ✅ NEURAL NETWORK (MLP Regressor)
+│   │       │       │               📌 Uber surge pricing — location + time + demand + weather
+│   │       │       │
+│   │       │       └── Don't know where to start?
+│   │       │           → ✅ RANDOM FOREST (safest default for regression)
+│   │       │           📌 Works well with minimal effort — upgrade to boosting later
+│   │       │
+│   │       └── Quick boost? → ✅ ADABOOST REGRESSOR
+│   │           📌 Simpler boosting before committing to XGBoost
+│   │
+│   └── Q2: Is the target a CATEGORY / LABEL?
+│       │   (spam/ham, yes/no, cat/dog/bird, disease type)
+│       │
+│       └── YES → ══ CLASSIFICATION ══
+│           │
+│           ├── Q7: How many classes?
+│           │   │
+│           │   ├── BINARY (2 classes: yes/no, 0/1)
+│           │   │   │
+│           │   │   ├── Q8: Is the data TEXT?
+│           │   │   │   ├── YES → ✅ NAIVE BAYES (then Logistic Regression)
+│           │   │   │   │   📌 Gmail spam filter — word frequencies are enough
+│           │   │   │   └── NO ↓
+│           │   │   │
+│           │   │   ├── Q9: Must you EXPLAIN decisions?
+│           │   │   │   │   (regulators, doctors, auditors need transparency)
+│           │   │   │   │
+│           │   │   │   ├── YES
+│           │   │   │   │   ├── Linear boundary? → ✅ LOGISTIC REGRESSION
+│           │   │   │   │   │   📌 Loan default: "each $10K debt → +4% risk"
+│           │   │   │   │   │
+│           │   │   │   │   └── Non-linear? → ✅ DECISION TREE CLASSIFIER
+│           │   │   │   │       📌 ER triage: "chest pain? → age > 50? → CRITICAL"
+│           │   │   │   │
+│           │   │   │   └── NO (accuracy is king)
+│           │   │   │       │
+│           │   │   │       └── Q10: Dataset size?
+│           │   │   │           │
+│           │   │   │           ├── Small (< 1K rows)
+│           │   │   │           │   ├── Categorical? → ✅ NAIVE BAYES
+│           │   │   │           │   │   📌 Medical diagnosis from symptom checklist
+│           │   │   │           │   └── Numeric? → ✅ KNN CLASSIFIER
+│           │   │   │           │       📌 Iris flowers — "nearest 5 neighbors vote"
+│           │   │   │           │
+│           │   │   │           ├── Medium (1K–100K rows)
+│           │   │   │           │   ├── Linearly separable? → ✅ SVM (Linear Kernel)
+│           │   │   │           │   │   📌 Tumor classification — maximum margin
+│           │   │   │           │   │
+│           │   │   │           │   ├── Complex boundaries, minimal tuning?
+│           │   │   │           │   │   ✅ RANDOM FOREST CLASSIFIER
+│           │   │   │           │   │   📌 Customer churn — handles mixed features
+│           │   │   │           │   │
+│           │   │   │           │   └── Complex boundaries, max accuracy?
+│           │   │   │           │       ✅ SVM (RBF Kernel)
+│           │   │   │           │       📌 Handwritten digits — maps to higher dimensions
+│           │   │   │           │
+│           │   │   │           ├── Large (100K+ rows)
+│           │   │   │           │   ├── Best accuracy? → ✅ GRADIENT BOOSTING
+│           │   │   │           │   │   📌 Credit card fraud — catches 0.1% with few FPs
+│           │   │   │           │   └── Fast + good? → ✅ RANDOM FOREST
+│           │   │   │           │       📌 Network intrusion detection — parallel training
+│           │   │   │           │
+│           │   │   │           └── Massive (millions+)
+│           │   │   │               ✅ NEURAL NETWORK (MLP Classifier)
+│           │   │   │               📌 Image diagnosis, voice recognition, NLP
+│           │   │   │
+│           │   │   └── Extremely IMBALANCED (99% vs 1%)?
+│           │   │       → ✅ GRADIENT BOOSTING + SMOTE + class_weight='balanced'
+│           │   │       📌 Fraud: use F1 / AUC-ROC, NEVER accuracy!
+│           │   │
+│           │   └── MULTI-CLASS (3+ categories)
+│           │       │
+│           │       ├── Text data? → ✅ NAIVE BAYES → LOGISTIC REGRESSION (OvR)
+│           │       │   📌 News articles → Sports / Politics / Tech / Entertainment
+│           │       │
+│           │       ├── Few classes (3–10)
+│           │       │   ├── Interpretable? → ✅ DECISION TREE or LOGISTIC REG (OvR)
+│           │       │   │   📌 Patient risk level: Low / Medium / High
+│           │       │   └── Accuracy? → ✅ RANDOM FOREST or GRADIENT BOOSTING
+│           │       │       📌 Wine quality from chemical properties
+│           │       │
+│           │       └── Many classes (10–1000+)
+│           │           ✅ GRADIENT BOOSTING or NEURAL NETWORK (softmax)
+│           │           📌 100 plant species from leaf shape and color
+│           │
+│           └── Ordinal classes (low < med < high)?
+│               → Treat as regression OR ordinal encoding + any classifier
+│               📌 Movie ratings 1–5, pain level mild/moderate/severe
+│
+└── NO → UNSUPERVISED LEARNING (no target variable)
+    │
+    ├── Q11: What is your GOAL?
+    │   │
+    │   ├── FIND NATURAL GROUPS in data
+    │   │   │
+    │   │   ├── Q12: Do you know how many groups to expect?
+    │   │   │   │
+    │   │   │   ├── YES (or willing to specify K)
+    │   │   │   │   │
+    │   │   │   │   ├── Round, compact clusters?
+    │   │   │   │   │   ✅ K-MEANS
+    │   │   │   │   │   📌 5 customer tiers by spending + visit frequency
+    │   │   │   │   │
+    │   │   │   │   ├── Elliptical / overlapping, want soft probabilities?
+    │   │   │   │   │   ✅ GAUSSIAN MIXTURE MODEL (GMM)
+    │   │   │   │   │   📌 Students: "65% struggling, 30% average, 5% strong"
+    │   │   │   │   │
+    │   │   │   │   └── Weird shapes / connected components?
+    │   │   │   │       ✅ SPECTRAL CLUSTERING
+    │   │   │   │       📌 Social network friend-group communities
+    │   │   │   │
+    │   │   │   └── NO (let the algorithm decide)
+    │   │   │       │
+    │   │   │       ├── Noisy, real-world data?
+    │   │   │       │   ✅ DBSCAN
+    │   │   │       │   📌 Crime hotspots on a city map — ignores noise
+    │   │   │       │
+    │   │   │       ├── Clusters have VARYING density?
+    │   │   │       │   ✅ HDBSCAN
+    │   │   │       │   📌 Delivery stops: dense downtown + sparse suburbs
+    │   │   │       │
+    │   │   │       └── Want a hierarchy / dendrogram?
+    │   │   │           ✅ AGGLOMERATIVE CLUSTERING
+    │   │   │           📌 Programming languages grouped by syntax similarity
+    │   │   │
+    │   │   └── Very large (millions of points)?
+    │   │       ✅ MINI-BATCH K-MEANS or BIRCH
+    │   │       📌 Billions of web search queries by topic
+    │   │
+    │   ├── REDUCE / COMPRESS features
+    │   │   │
+    │   │   ├── Speed up ML models (preprocessing)?
+    │   │   │   ├── Linear relationships? → ✅ PCA
+    │   │   │   │   📌 50 body measurements → 5 components (size, proportions...)
+    │   │   │   └── Non-linear? → ✅ KERNEL PCA
+    │   │   │       📌 Concentric ring data — "unfolds" curves
+    │   │   │
+    │   │   ├── Visualize clusters in 2D?
+    │   │   │   ├── < 10K rows → ✅ t-SNE
+    │   │   │   │   📌 MNIST digits form 10 visible clusters
+    │   │   │   └── 10K+ rows → ✅ UMAP
+    │   │   │       📌 Million cells in RNA sequencing — minutes, not hours
+    │   │   │
+    │   │   └── Sparse data (text TF-IDF, ratings matrices)?
+    │   │       ├── General → ✅ TRUNCATED SVD (LSA)
+    │   │       │   📌 100K news articles → discover "politics" and "sports" topics
+    │   │       └── Non-negative + interpretable? → ✅ NMF
+    │   │           📌 Music taste: "60% rock + 30% jazz + 10% pop"
+    │   │
+    │   ├── FIND ANOMALIES / OUTLIERS
+    │   │   │
+    │   │   ├── General-purpose, tabular data?
+    │   │   │   ✅ ISOLATION FOREST
+    │   │   │   📌 $3K jewelry purchase abroad at 3 AM — easy to isolate
+    │   │   │
+    │   │   ├── "Normal" depends on context / location?
+    │   │   │   ✅ LOF (Local Outlier Factor)
+    │   │   │   📌 80°C in kitchen = fine, 80°C in bedroom = fire!
+    │   │   │
+    │   │   ├── Small clean dataset of known-normal examples?
+    │   │   │   ✅ ONE-CLASS SVM
+    │   │   │   📌 Good pills vs. defective — learn the "normal envelope"
+    │   │   │
+    │   │   └── Complex, high-dimensional, or time-series?
+    │   │       ✅ AUTOENCODER (Neural Network)
+    │   │       📌 Power grid sensor patterns — high reconstruction error = alert
+    │   │
+    │   └── FIND CO-OCCURRENCE PATTERNS
+    │       │
+    │       ├── Market basket (small-med transactions)?
+    │       │   ✅ APRIORI
+    │       │   📌 "Diapers + beer on Friday nights" — layout optimization
+    │       │
+    │       ├── Large-scale transactions?
+    │       │   ✅ FP-GROWTH
+    │       │   📌 Amazon "customers also bought" at 50M transactions
+    │       │
+    │       └── Order matters (sequences)?
+    │           ✅ SEQUENTIAL PATTERN MINING (PrefixSpan)
+    │           📌 Pricing page → FAQ → Contact = 5x more likely to buy
+```
+
+> **Tip:** Found your algorithm? Search this document for its name to jump to the full deep-dive card
+> with detailed pros/cons, hyperparameters, and extended examples.
+
+---
+
 ## Table of Contents
 
 **Part A — Supervised Learning**
@@ -32,6 +303,8 @@
 **Part C — General Guidance**
 10. [Common Mistakes to Avoid](#-common-mistakes-to-avoid)
 11. [The 60-Second Decision Shortcut](#-the-60-second-decision-shortcut)
+12. [Industry Use Cases — What Algorithm for What Domain?](#-industry-use-cases--what-algorithm-for-what-domain)
+13. [Example Scenarios — "What Would YOU Choose?"](#-example-scenarios--what-would-you-choose)
 
 ---
 
@@ -76,6 +349,14 @@ Do you have LABELED data?
 | Discovering that people who buy diapers also buy beer | Unsupervised (Association Rules) |
 | Compressing images while retaining key information | Unsupervised (Dimensionality Reduction) |
 | Segmenting a city into zones by traffic patterns | Unsupervised (Clustering) |
+| Predicting whether a machine will fail this week | Supervised (Classification) |
+| Estimating delivery time based on distance & traffic | Supervised (Regression) |
+| Identifying fake social media accounts | Supervised (Classification) |
+| Discovering topics in 100,000 news articles | Unsupervised (Dim. Reduction / NMF / SVD) |
+| Flagging unusual ATM withdrawals in real-time | Unsupervised (Anomaly Detection) |
+| Predicting insurance claim amounts | Supervised (Regression) |
+| Finding which products to shelve together in a store | Unsupervised (Association Rules) |
+| Grouping genes by expression similarity | Unsupervised (Clustering) |
 
 ---
 
@@ -2027,6 +2308,170 @@ What's your problem?
         ├── Small-medium data         → Apriori
         └── Large-scale               → FP-Growth
 ```
+
+---
+
+---
+
+## 🏭 Industry Use Cases — What Algorithm for What Domain?
+
+Real-world ML doesn't start with "which algorithm?" — it starts with "what business problem?"
+This section maps common industry problems to the right algorithms, so you can jump straight
+to what matters for your domain.
+
+---
+
+### Healthcare & Biomedical
+
+| Problem | Algorithm | Why This One? |
+|---------|-----------|---------------|
+| Predict patient readmission risk (yes/no) | **Logistic Regression** → **Gradient Boosting** | Start interpretable (regulators), upgrade for accuracy |
+| Predict length of hospital stay (days) | **Random Forest Regressor** | Mixed features (age, diagnosis codes, vitals), robust |
+| Classify tumor as malignant/benign from biopsy measurements | **SVM (Linear)** | Clean separation, medium data, strong theory |
+| Predict disease severity from gene expression (10K+ genes, 200 patients) | **Elastic Net** | Feature selection + handles correlated gene groups |
+| Classify chest X-rays (normal/pneumonia/COVID) | **Neural Network (CNN)** | Image data — deep learning is the only option |
+| Detect anomalous ICU vital signs | **LOF** | Context-dependent: "normal" heart rate differs by patient |
+| Discover patient subgroups for clinical trials | **K-Means** or **GMM** | Unsupervised grouping; GMM gives soft assignment probabilities |
+| Identify drug side-effect patterns from prescriptions | **Apriori / FP-Growth** | Association rules: "Drug A + Drug B → side effect X" |
+| Reduce 500 lab features to key biomarkers | **PCA** → **Lasso** | PCA for compression; Lasso for interpretable selection |
+| Detect unusual lab results in patient records | **Isolation Forest** | Fast, handles high dimensionality, fully unsupervised |
+
+---
+
+### Finance & Banking
+
+| Problem | Algorithm | Why This One? |
+|---------|-----------|---------------|
+| Predict loan default (yes/no) | **Logistic Regression** | Regulatory requirement for explainability |
+| Detect credit card fraud (0.1% of transactions) | **Gradient Boosting (XGBoost)** + SMOTE | Handles extreme imbalance, catches rare fraud |
+| Predict stock price (next day) | **Random Forest** → **LSTM Neural Network** | RF for tabular features; LSTM for time-series patterns |
+| Estimate insurance claim amount | **Gradient Boosting (LightGBM)** | Millions of claims, complex feature interactions |
+| Customer segmentation for targeted marketing | **K-Means** or **HDBSCAN** | K-Means if you want N tiers; HDBSCAN for natural groups |
+| Detect money laundering transaction patterns | **Isolation Forest** → **Graph Neural Network** | Isolation Forest for simple anomalies; GNN for network patterns |
+| Predict customer lifetime value (CLV) | **Gradient Boosting Regressor** | Non-linear, many features, accuracy matters |
+| Portfolio risk scoring (low/medium/high) | **Decision Tree Classifier** | Interpretability required for compliance |
+| Identify frequently co-occurring trading patterns | **FP-Growth** | Sequential pattern mining at scale |
+| Reduce redundant financial indicators | **PCA** | Remove multicollinearity among correlated ratios |
+
+---
+
+### Retail & E-Commerce
+
+| Problem | Algorithm | Why This One? |
+|---------|-----------|---------------|
+| Predict sales revenue for next quarter | **Gradient Boosting Regressor** | Complex seasonality, promotions, many factors |
+| Classify customer churn (will leave/won't leave) | **Random Forest** → **XGBoost** | RF as baseline, boost for production accuracy |
+| Recommend products ("also bought") | **NMF** or **FP-Growth** | NMF for latent preferences; FP-Growth for baskets |
+| Segment customers by behavior | **K-Means** (RFM analysis) | Classic recency/frequency/monetary segmentation |
+| Predict demand for inventory planning | **Random Forest Regressor** | Handles stockouts, holidays, weather features |
+| Detect fraudulent returns | **Isolation Forest** | Unusual return patterns are rare and isolatable |
+| Classify product reviews (positive/negative/neutral) | **Naive Bayes** → **Logistic Regression** | Text classification — NB is fast baseline, LR is strong |
+| Price optimization (dynamic pricing) | **Neural Network (MLP)** | Massive data, non-linear demand curves |
+| Identify shoplifting patterns from POS data | **DBSCAN** | Anomalous transaction clusters without predefined K |
+| Discover cross-selling opportunities | **Apriori** | "Customers who buy bread + butter also buy milk (73%)" |
+
+---
+
+### Manufacturing & IoT
+
+| Problem | Algorithm | Why This One? |
+|---------|-----------|---------------|
+| Predict equipment failure (days until breakdown) | **Random Forest Regressor** → **LSTM** | RF for tabular sensors; LSTM for time-series |
+| Classify product quality (pass/fail) | **Gradient Boosting** | High accuracy on structured sensor data |
+| Detect anomalous machine vibrations | **Autoencoder** (LSTM-based) | Learn normal vibration patterns, flag deviations |
+| Predict energy consumption of facility | **Gradient Boosting Regressor** | Complex patterns: weather, production volume, shifts |
+| Cluster machines by performance profiles | **GMM** | Soft assignments — "70% like Machine Group A, 30% like B" |
+| Reduce 200 sensor features to key indicators | **PCA** | Compress correlated sensor readings |
+| Detect defective parts on assembly line | **One-Class SVM** or **Isolation Forest** | Train on good parts, flag anything different |
+| Optimize process parameters (temperature, pressure) | **Polynomial Regression** → **SVR** | Capture curved sweet spots in process settings |
+| Identify root cause of defects from multi-sensor data | **Decision Tree Classifier** | Engineers can follow "if pressure > X AND temp > Y → defect" |
+| Monitor real-time sensor streams for alerts | **Isolation Forest** on rolling features | Fast, runs in real-time, minimal tuning |
+
+---
+
+### Marketing & Social Media
+
+| Problem | Algorithm | Why This One? |
+|---------|-----------|---------------|
+| Predict ad click-through rate (CTR) | **Gradient Boosting (LightGBM)** | Massive data, sparse features, accuracy-driven |
+| Classify tweet sentiment (positive/negative) | **Naive Bayes** → **Logistic Regression** | Text classification pipeline |
+| Segment email subscribers by engagement | **K-Means** (3-5 clusters) | Active / occasional / dormant / churned |
+| Predict campaign ROI from budget allocation | **Linear Regression** → **Random Forest** | Start simple; upgrade if non-linear patterns emerge |
+| Detect bot accounts on social media | **Random Forest Classifier** | Mixed features (post frequency, follower ratio, patterns) |
+| Identify influencer communities in networks | **Spectral Clustering** | Graph-based — communities defined by connections |
+| Topic modeling on customer feedback | **NMF** or **Truncated SVD (LSA)** | Discover latent topics in unstructured text |
+| Predict email open rate | **Gradient Boosting** | Subject line features, send time, user history |
+| Visualize customer personas in 2D | **UMAP** | Fast non-linear projection for large customer bases |
+| Find message sequences that lead to conversion | **Sequential Pattern Mining** | "Email → webinar → free trial → purchase" paths |
+
+---
+
+### Education
+
+| Problem | Algorithm | Why This One? |
+|---------|-----------|---------------|
+| Predict student exam scores | **Linear Regression** → **Random Forest** | Start simple (interpretable for teachers); RF if non-linear |
+| Classify student at-risk (yes/no) | **Logistic Regression** | Explainable to administrators and counselors |
+| Group students by learning style | **K-Means** or **GMM** | Discover natural learning profiles from behavior data |
+| Predict dropout probability | **Gradient Boosting** | Many features (attendance, grades, engagement), accuracy matters |
+| Detect unusual test submission patterns (cheating) | **Isolation Forest** | Flag submissions that deviate from normal timing/score patterns |
+| Recommend courses to students | **NMF** | Matrix factorization on student-course ratings |
+| Reduce survey response dimensions | **PCA** | Compress 50 Likert-scale questions into key factors |
+| Classify essay quality (A/B/C/D/F) | **Logistic Regression (OvR)** or **Random Forest** | Text features + rubric scores → multi-class |
+
+---
+
+### Transportation & Logistics
+
+| Problem | Algorithm | Why This One? |
+|---------|-----------|---------------|
+| Predict delivery time | **Gradient Boosting Regressor** | Distance, traffic, weather, time-of-day — complex interactions |
+| Classify shipment delay (yes/no) | **Random Forest** | Handles missing data, mixed types, robust |
+| Optimize fleet routing zones | **K-Means** on geographic coordinates | Partition service area into K balanced zones |
+| Detect anomalous GPS patterns (theft, unauthorized use) | **DBSCAN** | Unusual route clusters without specifying how many |
+| Predict ride-share demand by area | **Neural Network (MLP)** | Massive data, non-linear spatial-temporal patterns |
+| Traffic congestion zones in a city | **HDBSCAN** | Varying density — downtown vs suburbs |
+| Predict fuel consumption per trip | **Random Forest Regressor** | Robust to outliers, handles vehicle + route features |
+| Cluster vehicle types by usage patterns | **Agglomerative Clustering** | Dendrogram reveals which vehicle types behave similarly |
+
+---
+
+### SAP / Enterprise Systems
+
+| Problem | Algorithm | Why This One? |
+|---------|-----------|---------------|
+| Predict invoice payment delay (days) | **Gradient Boosting Regressor** | Complex vendor behavior patterns |
+| Classify purchase orders as routine/non-routine | **Logistic Regression** | Explainable for audit trails |
+| Detect anomalous procurement transactions | **Isolation Forest** | Flag unusual amounts, vendors, or timing |
+| Segment vendors by performance metrics | **K-Means** | Group into performance tiers for negotiation |
+| Predict material demand for MRP | **Random Forest Regressor** | Historical consumption + seasonality + lead times |
+| Identify duplicate master data records | **KNN Classifier** on text similarity | "Find the 5 most similar vendor records" |
+| Reduce redundant material attributes | **PCA** | Compress dozens of material properties |
+| Discover co-occurring material movements | **Apriori** | "When Material A is ordered, Material B follows 80% of the time" |
+
+---
+
+## 📌 Example Scenarios — "What Would YOU Choose?"
+
+Test your understanding with these scenarios. Try to pick the algorithm BEFORE reading the answer.
+
+| # | Scenario | Answer |
+|---|----------|--------|
+| 1 | A real estate company has 50,000 house records with price as the target. Features include sq ft, bedrooms, location, age. They want to predict price and explain to clients WHY. | **Decision Tree Regressor** for explainability; upgrade to **Random Forest** if accuracy is low |
+| 2 | A hospital has 300 patient records with 1,000 gene features. Goal: predict cancer recurrence (yes/no). | **Elastic Net** (logistic) — too many features, too few samples, correlated genes. Need regularization. |
+| 3 | An e-commerce platform has 10 million transactions and wants to find "customers also bought" rules. | **FP-Growth** — Apriori is too slow at this scale. FP-Growth uses a compressed tree. |
+| 4 | A startup has 500 unlabeled images of products and wants to see if natural groups exist. | **PCA** or **UMAP** to visualize in 2D first, then **K-Means** or **DBSCAN** on the reduced features. |
+| 5 | A bank must detect fraud in 20M transactions where only 0.05% are fraudulent. They have fraud labels. | **Gradient Boosting (XGBoost)** with `scale_pos_weight`, evaluate with **Precision-Recall AUC**. Supervised because labels exist! |
+| 6 | A teacher wants to predict final exam scores from homework grades, attendance, and participation. 200 students. | **Linear Regression** — small dataset, likely linear, perfectly interpretable for a teacher. |
+| 7 | A security company has firewall logs with no labels and wants to find suspicious patterns. | **Isolation Forest** or **DBSCAN** — no labels means unsupervised. Isolation Forest for anomalies, DBSCAN for clusters. |
+| 8 | A music streaming service wants to categorize 50K songs into moods (happy/sad/energetic/calm). Audio features available, mood labels available. | **Random Forest Classifier** — 4-class classification, medium data, mixed features. |
+| 9 | A pharmaceutical company has sensor readings from 1 year of normal pill production. New readings should be flagged if abnormal. | **One-Class SVM** or **Autoencoder** — trained only on "normal," flag anything the model can't reconstruct. |
+| 10 | A government agency has census data for 5M people and wants to find natural demographic clusters. Number of clusters unknown. | **Mini-Batch K-Means** for speed (5M rows), or **HDBSCAN** if density varies. Use **Silhouette Score** to pick K. |
+| 11 | A car manufacturer has data on engine RPM, temperature, and oil pressure for 100 engines. 95 are normal, 5 failed. Goal: predict failure. | **Logistic Regression** or **Random Forest** — this is **supervised** (you have labels: normal/failed), not anomaly detection! |
+| 12 | A social media team wants to know if their posts are positive, negative, or neutral. They have 10,000 labeled tweets. | **Naive Bayes** as baseline (text!), then **Logistic Regression** with TF-IDF for better accuracy. |
+| 13 | A delivery company has GPS coordinates of 100K deliveries and wants to find geographic hotspots. | **DBSCAN** — density-based, finds clusters of any shape, ignores sparse rural deliveries as noise. |
+| 14 | An HR department has 5,000 employee records and wants to predict salary from role, experience, education, and department. | **Random Forest Regressor** — mixed features, medium data, probably non-linear interactions. |
+| 15 | A biologist has single-cell data: 500K cells × 20,000 genes. Wants to visualize cell-type clusters in 2D. | **UMAP** — t-SNE is too slow for 500K points. UMAP preserves global structure and runs fast. |
 
 ---
 
